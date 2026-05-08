@@ -1,6 +1,26 @@
 def connected(relations, person_a, person_b):
-    # Your solution here!
-    pass
+    visited = set()
+
+    def dfs(person):
+
+        if person == person_b:
+            return True
+        
+        if person in visited:
+            return False
+        
+        visited.add(person)
+
+        for man in relations.get(person, set()):
+
+            if dfs(man):
+                return True
+        
+        return False
+    
+    return dfs(person_a)
+
+
 
 # All tests use the same dictionary
 relations = {
